@@ -26,13 +26,13 @@ function Home() {
       // Extraer y almacenar la temperatura máxima y mínima para los próximos 5 días
       const forecastData = weatherData.list.map(item => ({
         date: item.dt_txt,
-        maxTemp: item.main.temp_max,
-        minTemp: item.main.temp_min
-      })); // Tomar solo los próximos 5 días
+        maxTemp: item.main.temp_max.toFixed(0),
+        minTemp: item.main.temp_min.toFixed(0)
+      }));
 
-      console.log(forecastData)
-
+    
       setForecast(forecastData);
+      console.log(forecast)
 
     } catch (error) {
       console.error('Error al buscar el pronóstico del tiempo:', error);
@@ -57,9 +57,8 @@ function Home() {
               <Card style={{ margin: 10, textAlign: 'center' }}>
                 <Card.Body>
                   <Card.Text>
-                    <p>Fecha: {day.date}</p>
-                    <p>Temperatura Máxima: {day.maxTemp}°C</p>
-                    <p>Temperatura Mínima: {day.minTemp}°C</p>
+                    <strong>{day.date}</strong>
+                    <p>{day.maxTemp}°C / {day.minTemp}°C</p>
                   </Card.Text>
                 </Card.Body>
               </Card>
